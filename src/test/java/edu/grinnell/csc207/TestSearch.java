@@ -104,4 +104,14 @@ public class TestSearch {
     assertBinarySearchFails(new int[] { 7, 11 }, 20);
   } // testBinarySearchTwo()
 
+  @Test
+  void testBinaryGrat() throws Exception{
+    assertBinarySearchFinds( 0, new int[] {0, 1, 2}, 0);
+    assertBinarySearchFinds( 0, new int[] {0, 1, 2}, -0);
+    assertBinarySearchFinds(1, new int[] {0, 1, 2}, 1);
+    assertBinarySearchFinds(2,  new int[] {0, 1, 2}, 2);
+    
+    // Failures
+    assertBinarySearchFails(null, 0);
+  }
 } // class TestSearch

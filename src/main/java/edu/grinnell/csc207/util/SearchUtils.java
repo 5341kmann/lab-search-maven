@@ -1,5 +1,6 @@
 package edu.grinnell.csc207.util;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 /**
@@ -53,7 +54,7 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int recursiveBinarySearch(int[] vals, int i) throws Exception {
-    return 0;   // STUB
+    return rbsHelper(vals, 0, vals.length - 1, i);
   } // recursiveBinarySearch
 
   /**
@@ -79,7 +80,21 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int rbsHelper(int[] vals, int lb, int ub, int i) throws Exception {
-    return 0;   // STUB
+    int midpoint = lb + ((ub - lb) / 2);
+
+    if (lb > ub){
+      throw new Exception();
+    }
+
+    if (i == vals[midpoint]){
+      return midpoint;
+
+    } else if (i < vals[midpoint]){
+      return rbsHelper(vals, lb, midpoint - 1, i);
+    } else {
+      return rbsHelper(vals, midpoint + 1, ub, i);
+
+    }
   } // rbsHelper
 
   // +----------------+----------------------------------------------
@@ -123,16 +138,15 @@ public class SearchUtils {
    *   index, an index of val (if one exists)
    * @throws Exception
    *   If there is no i s.t. values[i] == val
-   * @pre
+   * @pre    assertBinarySearchFinds(1, new int[] {0, 1, 2}, 1);
+
    *   values is sorted in increasing order.  That is, values[i] <
    *   values[i+1] for all reasonable i.
    * @post
    *   values[index] == val
    */
   public static int binarySearch(int[] vals, int i) throws Exception {
-    return 0;
-    // return interativeBinarySearch(vals, i);
-    // return recursiveBinarySearch(vals, i);
+    return recursiveBinarySearch(vals, i); 
   } // binarySearch
 
 } // class SearchUtils
