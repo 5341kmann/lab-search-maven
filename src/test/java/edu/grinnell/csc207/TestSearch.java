@@ -105,7 +105,7 @@ public class TestSearch {
   } // testBinarySearchTwo()
 
   @Test
-  void testBinaryGrat() throws Exception{
+  void ourTests() throws Exception{
     assertBinarySearchFinds( 0, new int[] {0, 1, 2}, 0);
     assertBinarySearchFinds( 0, new int[] {0, 1, 2}, -0);
     assertBinarySearchFinds(1, new int[] {0, 1, 2}, 1);
@@ -113,5 +113,28 @@ public class TestSearch {
     
     // Failures
     assertBinarySearchFails(null, 0);
+  }
+
+  @Test
+  void ourTests2() throws Exception {
+  //   For each s from 1 to 32
+  // Create an array of size s, containing the values 0, 2, 4, ... 2*(s-1)
+  // For all i from 0 to s-1, inclusive
+  //     // Make sure that value 2*i is in position i
+  //     assert(binarySearch(2*i, array) == i)
+  //     // Make sure that odd values are not in the array
+  //     assertException(binarySearch(2*i+1, array))
+  // assertException(binarySearch(-1, array))
+    for (int s = 1; s < 33; s++) {
+      int[] arr = new int[s];
+      for (int i = 0; i < s; i++) {
+        arr[i] = (2 * i);
+      }
+      for (int i = 0; i <= s - 1; i++) {
+        assert(SearchUtils.binarySearch(arr, 2*i) == i);
+        assertBinarySearchFails(arr, 2*i+1);
+      }
+      assertBinarySearchFails(arr, -1);
+    }
   }
 } // class TestSearch
